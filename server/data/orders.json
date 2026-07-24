@@ -1,0 +1,59 @@
+[
+  {
+    "id": "ord_mrys3pi7_smypi",
+    "userId": "usr_mrys3lxv",
+    "items": [
+      {
+        "productId": "prd_apple",
+        "name": "Royal Gala Apple",
+        "price": 149,
+        "quantity": 3,
+        "image": "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        "productId": "prd_tomato",
+        "name": "Juicy Red Tomato",
+        "price": 42,
+        "quantity": 1,
+        "image": "https://images.unsplash.com/photo-1546470427-e5ac89cd0b31?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        "productId": "prd_broccoli",
+        "name": "Fresh Broccoli",
+        "price": 89,
+        "quantity": 1,
+        "image": "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&w=900&q=80"
+      }
+    ],
+    "subtotal": 578,
+    "delivery": 0,
+    "total": 578,
+    "status": "Confirmed",
+    "createdAt": "2026-07-24T10:09:45.439Z"
+  },
+  {
+    "id": "ord_mrys4q26_wg63r",
+    "userId": "usr_mrys3lxv",
+    "items": [
+      {
+        "productId": "prd_broccoli",
+        "name": "Fresh Broccoli",
+        "price": 89,
+        "quantity": 1,
+        "image": "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        "productId": "prd_banana",
+        "name": "Farm Fresh Banana",
+        "price": 69,
+        "quantity": 1,
+        "image": "https://images.unsplash.com/photo-1603833665858-e61d17a86224?auto=format&fit=crop&w=900&q=80"
+      }
+    ],
+    "subtotal": 158,
+    "delivery": 40,
+    "total": 198,
+    "status": "Confirmed",
+    "createdAt": "2026-07-24T10:10:32.814Z"
+  }
+]

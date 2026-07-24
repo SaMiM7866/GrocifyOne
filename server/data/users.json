@@ -1,0 +1,16 @@
+[
+  {
+    "id": "usr_demo",
+    "name": "Demo Customer",
+    "email": "demo@grocify.com",
+    "passwordHash": "$2a$10$9JY/5El7TsP0u4cQX/hMO.xTb4pj.x/44jsD0gNRDUrPNSD5te09W",
+    "createdAt": "2026-07-24T10:06:37.143Z"
+  },
+  {
+    "id": "usr_mrys3lxv",
+    "name": "sk samimuddin mondal",
+    "email": "s4sksamimuddin786@gmail.com",
+    "passwordHash": "$2a$10$7vK/0lwZ.GK5CLyh/KH5suRVYmJU7bJEG6Adu9L/CTTlbfscCuQiC",
+    "createdAt": "2026-07-24T10:09:40.945Z"
+  }
+]
