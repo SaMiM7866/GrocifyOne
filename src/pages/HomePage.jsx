@@ -1,98 +1,519 @@
-import { ArrowRight, Clock3, ShieldCheck, Sparkles, Truck } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import ProductCard from '../components/ProductCard';
-import LoadingGrid from '../components/LoadingGrid';
-import { api } from '../services/api';
+import {
+  ArrowRight,
+  Clock3,
+  ShieldCheck,
+  Sparkles,
+  Truck,
+  Leaf,
+  Star,
+  ShoppingBasket
+} from "lucide-react";
+
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+import ProductCard from "../components/ProductCard";
+import LoadingGrid from "../components/LoadingGrid";
+import { api } from "../services/api";
+
 
 export default function HomePage() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    api('/products?featured=true')
-      .then((data) => setProducts(data?.products || []))
-      .catch(() => setProducts([]))
-      .finally(() => setLoading(false));
-  }, []);
+  const [products,setProducts] = useState([]);
+  const [loading,setLoading] = useState(true);
 
-  return (
-    <>
-      <section className="relative overflow-hidden py-16 sm:py-24">
-        <div className="absolute -left-24 top-20 h-72 w-72 rounded-full bg-green-300/30 blur-3xl animate-pulse-soft" />
-        <div className="absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-orange-200/40 blur-3xl animate-pulse-soft" />
 
-        <div className="container-app relative grid items-center gap-12 lg:grid-cols-2">
-          <div className="animate-fade-up">
-            <div className="inline-flex items-center gap-2 rounded-full border border-green-200 bg-green-50 px-4 py-2 text-sm font-bold text-green-700">
-              <Sparkles size={16} /> Freshness delivered daily
-            </div>
+  useEffect(()=>{
 
-            <h1 className="mt-6 max-w-2xl text-5xl font-black leading-[1.05] tracking-tight text-stone-950 sm:text-6xl lg:text-7xl">
-              Good food starts with <span className="text-green-600">fresh choices.</span>
-            </h1>
+    api("/products?featured=true")
+      .then((data)=>setProducts(data?.products || []))
+      .catch(()=>setProducts([]))
+      .finally(()=>setLoading(false));
 
-            <p className="mt-6 max-w-xl text-lg leading-8 text-stone-600">
-              Shop farm-fresh fruits, vegetables and daily essentials with fast doorstep delivery.
-            </p>
+  },[]);
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/products" className="btn-primary">
-                Shop now <ArrowRight size={19} />
-              </Link>
-              <a href="#featured" className="btn-secondary">
-                Explore offers
-              </a>
-            </div>
 
-            <div className="mt-10 grid max-w-xl grid-cols-3 gap-4 text-sm">
-              <div>
-                <strong className="block text-2xl text-stone-900">30 min</strong>
-                <span className="text-stone-500">Fast delivery</span>
-              </div>
-              <div>
-                <strong className="block text-2xl text-stone-900">100+</strong>
-                <span className="text-stone-500">Fresh items</span>
-              </div>
-              <div>
-                <strong className="block text-2xl text-stone-900">4.9/5</strong>
-                <span className="text-stone-500">Customer rating</span>
-              </div>
-            </div>
-          </div>
 
-          <div className="relative mx-auto w-full max-w-lg animate-float">
-            <div className="absolute inset-8 rounded-full bg-green-300/40 blur-3xl" />
-            <div className="relative card overflow-hidden p-5">
-              <img
-                className="h-[430px] w-full rounded-[2rem] object-cover"
-                src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=85"
-                alt="Fresh grocery market"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+  const categories=[
+    {
+      name:"Fruits",
+      image:"https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500"
+    },
+    {
+      name:"Vegetables",
+      image:"https://images.unsplash.com/photo-1542838132-92c53300491e?w=500"
+    },
+    {
+      name:"Dairy",
+      image:"https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=500"
+    },
+    {
+      name:"Bakery",
+      image:"https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500"
+    }
+  ];
 
-      <section id="featured" className="container-app py-16">
-        <h2 className="text-3xl font-black">Fresh products for today</h2>
 
-        {loading ? (
-          <LoadingGrid />
-        ) : (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {(products || [])
-              .slice(0, 8)
-              .map((product, index) => (
-                <ProductCard
-                  key={product?.id || index}
-                  product={product}
-                  index={index}
-                />
-              ))}
-          </div>
-        )}
-      </section>
-    </>
-  );
+
+  const reviews=[
+    {
+      name:"Rahul Sharma",
+      text:"Fresh products and super fast delivery."
+    },
+    {
+      name:"Priya Das",
+      text:"Very smooth shopping experience."
+    },
+    {
+      name:"Amit Roy",
+      text:"Quality groceries at best price."
+    }
+  ];
+
+
+
+return (
+
+<div>
+
+
+{/* HERO */}
+
+<section className="relative overflow-hidden py-20">
+
+<div className="absolute inset-0 bg-gradient-to-br from-green-50 via-white to-orange-50"/>
+
+
+<div className="container-app relative grid gap-12 lg:grid-cols-2 items-center">
+
+
+<div>
+
+<div className="inline-flex items-center gap-2 rounded-full bg-green-100 px-5 py-2 text-green-700 font-bold">
+
+<Sparkles size={18}/>
+
+Fresh grocery delivered daily
+
+</div>
+
+
+
+<h1 className="mt-7 text-5xl lg:text-7xl font-black leading-tight">
+
+Fresh food.
+<br/>
+
+Healthy life.
+
+<span className="text-green-600">
+ Delivered fast.
+</span>
+
+</h1>
+
+
+
+<p className="mt-6 text-lg text-stone-600 max-w-xl">
+
+Shop fresh fruits, vegetables, dairy products and daily essentials with trusted doorstep delivery.
+
+</p>
+
+
+
+<div className="mt-8 flex gap-4 flex-wrap">
+
+
+<Link
+to="/products"
+className="btn-primary flex items-center gap-2"
+>
+
+Shop Now
+
+<ArrowRight size={18}/>
+
+</Link>
+
+
+<Link
+to="/products"
+className="btn-secondary"
+>
+
+Explore Products
+
+</Link>
+
+
+</div>
+
+
+
+
+<div className="mt-10 grid grid-cols-3 gap-5">
+
+
+<div>
+<h3 className="text-3xl font-black">
+30+
+</h3>
+
+<p className="text-stone-500">
+Minute Delivery
+</p>
+
+</div>
+
+
+
+<div>
+
+<h3 className="text-3xl font-black">
+500+
+</h3>
+
+<p className="text-stone-500">
+Products
+</p>
+
+</div>
+
+
+
+<div>
+
+<h3 className="text-3xl font-black">
+4.9
+</h3>
+
+<p className="text-stone-500">
+Rating
+</p>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div className="relative">
+
+<div className="absolute inset-10 bg-green-300 blur-3xl rounded-full"/>
+
+
+<img
+
+src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=900"
+
+className="relative rounded-[3rem] shadow-xl w-full h-[500px] object-cover"
+
+/>
+
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+{/* CATEGORY */}
+
+<section className="container-app py-16">
+
+
+<h2 className="text-4xl font-black text-center">
+
+Shop By Category
+
+</h2>
+
+
+<div className="grid md:grid-cols-4 gap-6 mt-10">
+
+
+{
+categories.map((cat)=>(
+
+<div
+key={cat.name}
+className="group overflow-hidden rounded-3xl bg-white shadow hover:-translate-y-2 transition"
+>
+
+
+<img
+src={cat.image}
+className="h-48 w-full object-cover group-hover:scale-110 transition"
+/>
+
+
+<h3 className="p-5 text-xl font-black">
+
+{cat.name}
+
+</h3>
+
+
+</div>
+
+
+))
+}
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+{/* FEATURES */}
+
+<section className="bg-green-50 py-16">
+
+
+<div className="container-app grid md:grid-cols-4 gap-6">
+
+
+{
+[
+[Truck,"Fast Delivery"],
+[ShieldCheck,"Quality Checked"],
+[Leaf,"Fresh Products"],
+[Clock3,"Open Everyday"]
+
+].map(([Icon,title])=>(
+
+
+<div className="bg-white rounded-3xl p-6 text-center">
+
+<Icon
+className="mx-auto text-green-600"
+size={35}
+/>
+
+<h3 className="mt-4 font-black">
+
+{title}
+
+</h3>
+
+</div>
+
+
+))
+}
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+{/* PRODUCTS */}
+
+
+<section className="container-app py-16">
+
+
+<div className="flex justify-between items-center">
+
+<h2 className="text-4xl font-black">
+
+Today's Fresh Picks
+
+</h2>
+
+
+<Link
+to="/products"
+className="text-green-700 font-bold"
+>
+
+View All →
+
+</Link>
+
+
+</div>
+
+
+
+{
+loading ?
+
+<LoadingGrid/>
+
+:
+
+<div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+
+{
+(products||[])
+.slice(0,8)
+.map((p,i)=>(
+
+<ProductCard
+key={p.id || i}
+product={p}
+index={i}
+/>
+
+))
+}
+
+</div>
+
+}
+
+
+</section>
+
+
+
+
+
+{/* REVIEWS */}
+
+
+<section className="bg-stone-100 py-16">
+
+
+<div className="container-app">
+
+
+<h2 className="text-4xl font-black text-center">
+
+Customer Reviews
+
+</h2>
+
+
+
+<div className="grid md:grid-cols-3 gap-6 mt-10">
+
+
+{
+reviews.map((r)=>(
+
+
+<div className="bg-white rounded-3xl p-7">
+
+
+<div className="flex text-yellow-500">
+
+{
+[1,2,3,4,5].map(i=>
+<Star key={i} fill="currentColor" size={18}/>
+)
+}
+
+</div>
+
+
+<p className="mt-5 text-stone-600">
+
+"{r.text}"
+
+</p>
+
+
+<h3 className="mt-5 font-black">
+
+{r.name}
+
+</h3>
+
+
+</div>
+
+
+))
+}
+
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+{/* CTA */}
+
+
+<section className="container-app py-16">
+
+
+<div className="rounded-[3rem] bg-green-600 text-white p-10 lg:p-16 text-center">
+
+
+<ShoppingBasket
+className="mx-auto"
+size={45}
+/>
+
+
+<h2 className="mt-5 text-4xl font-black">
+
+Fresh groceries are waiting for you
+
+</h2>
+
+
+<p className="mt-4 text-green-100">
+
+Order today and enjoy doorstep delivery.
+
+</p>
+
+
+<Link
+to="/products"
+className="inline-block mt-8 bg-white text-green-700 px-8 py-3 rounded-full font-black"
+>
+
+Start Shopping
+
+</Link>
+
+
+</div>
+
+
+</section>
+
+
+
+</div>
+
+);
+
 }
