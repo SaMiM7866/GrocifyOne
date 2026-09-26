@@ -11,87 +11,6 @@ import {
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-import ProductCard from "../components/ProductCard";
-import LoadingGrid from "../components/LoadingGrid";
-import { api } from "../services/api";
-
-
-export default function HomePage() {
-
-  const [products,setProducts] = useState([]);
-  const [loading,setLoading] = useState(true);
-
-
-  useEffect(()=>{
-
-    api("/products?featured=true")
-      .then((data)=>setProducts(data?.products || []))
-      .catch(()=>setProducts([]))
-      .finally(()=>setLoading(false));
-
-  },[]);
-
-
-
-  const categories=[
-    {
-      name:"Fruits",
-      image:"https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500"
-    },
-    {
-      name:"Vegetables",
-      image:"https://images.unsplash.com/photo-1542838132-92c53300491e?w=500"
-    },
-    {
-      name:"Dairy",
-      image:"https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=500"
-    },
-    {
-      name:"Bakery",
-      image:"https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500"
-    }
-  ];
-
-
-
-  const reviews=[
-    {
-      name:"Rahul Sharma",
-      text:"Fresh products and super fast delivery."
-    },
-    {
-      name:"Priya Das",
-      text:"Very smooth shopping experience."
-    },
-    {
-      name:"Amit Roy",
-      text:"Quality groceries at best price."
-    }
-  ];
-
-
-
-return (
-
-<div>
-
-
-{/* HERO */}
-
-import {
-  ArrowRight,
-  Clock3,
-  ShieldCheck,
-  Sparkles,
-  Truck,
-  Leaf,
-  Star,
-  ShoppingBasket
-} from "lucide-react";
-
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import ProductCard from "../components/ProductCard";
@@ -101,690 +20,1235 @@ import { api } from "../services/api";
 
 export default function HomePage() {
 
-  const [products,setProducts] = useState([]);
-  const [loading,setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
 
-  useEffect(()=>{
+  useEffect(() => {
 
     api("/products?featured=true")
-    .then((data)=>setProducts(data?.products || []))
-    .catch(()=>setProducts([]))
-    .finally(()=>setLoading(false));
+      .then((data) => setProducts(data?.products || []))
+      .catch(() => setProducts([]))
+      .finally(() => setLoading(false));
 
-  },[]);
+  }, []);
 
 
 
   const fadeUp = {
-    hidden:{
-      opacity:0,
-      y:60
+    hidden: {
+      opacity: 0,
+      y: 50
     },
 
-    show:{
-      opacity:1,
-      y:0,
-      transition:{
-        duration:.8,
-        ease:"easeOut"
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8
       }
     }
   };
 
 
   const stagger = {
-    hidden:{
-      opacity:0
+    hidden: {
+      opacity: 0
     },
 
-    show:{
-      opacity:1,
-      transition:{
-        staggerChildren:.15
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
       }
     }
   };
 
 
+  const categories = [
+    {
+      name: "Fresh Fruits",
+      image:
+        "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=600"
+    },
+    {
+      name: "Vegetables",
+      image:
+        "https://images.unsplash.com/photo-1542838132-92c53300491e?w=600"
+    },
+    {
+      name: "Dairy Products",
+      image:
+        "https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=600"
+    },
+    {
+      name: "Bakery",
+      image:
+        "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600"
+    }
+  ];
 
-return (
 
-<div className="overflow-hidden">
 
+  return (
 
-{/* HERO SECTION */}
+    <div className="overflow-hidden">
 
-<section className="relative min-h-screen flex items-center py-20">
 
+      {/* HERO SECTION */}
 
-<motion.div
+      <section className="relative min-h-screen flex items-center py-20">
 
-animate={{
-  y:[0,-30,0]
-}}
 
-transition={{
- duration:6,
- repeat:Infinity
-}}
+        <motion.div
 
-className="
-absolute
-top-20
-left-10
-h-72
-w-72
-rounded-full
-bg-green-300/30
-blur-3xl
-"
+          animate={{
+            y: [0, -30, 0]
+          }}
 
-/>
+          transition={{
+            duration: 6,
+            repeat: Infinity
+          }}
 
+          className="
+          absolute
+          top-20
+          left-10
+          h-72
+          w-72
+          rounded-full
+          bg-green-300/30
+          blur-3xl
+          "
 
+        />
 
-<motion.div
 
-animate={{
- y:[0,40,0]
-}}
+        <motion.div
 
-transition={{
- duration:7,
- repeat:Infinity
-}}
+          animate={{
+            y: [0, 40, 0]
+          }}
 
-className="
-absolute
-right-0
-bottom-20
-h-96
-w-96
-rounded-full
-bg-orange-200/40
-blur-3xl
-"
+          transition={{
+            duration: 7,
+            repeat: Infinity
+          }}
 
-/>
+          className="
+          absolute
+          right-0
+          bottom-20
+          h-96
+          w-96
+          rounded-full
+          bg-orange-200/40
+          blur-3xl
+          "
 
+        />
 
 
-<div className="container-app relative grid lg:grid-cols-2 gap-14 items-center">
 
+        <div className="
+        container-app
+        relative
+        grid
+        lg:grid-cols-2
+        gap-14
+        items-center
+        ">
 
-<motion.div
 
-variants={fadeUp}
+          <motion.div
 
-initial="hidden"
+            variants={fadeUp}
 
-animate="show"
+            initial="hidden"
 
->
+            animate="visible"
 
+          >
 
-<motion.div
 
-whileHover={{
-scale:1.05
-}}
+            <motion.div
 
-className="
-inline-flex
-items-center
-gap-2
-rounded-full
-bg-green-100
-px-5
-py-2
-font-bold
-text-green-700
-"
+              whileHover={{
+                scale: 1.05
+              }}
 
->
+              className="
+              inline-flex
+              items-center
+              gap-2
+              rounded-full
+              bg-green-100
+              px-5
+              py-2
+              font-bold
+              text-green-700
+              "
 
-<Sparkles size={18}/>
+            >
 
-Fresh grocery delivered daily
+              <Sparkles size={18}/>
 
-</motion.div>
+              Fresh grocery delivered daily
 
+            </motion.div>
 
 
-<h1 className="
-mt-8
-text-5xl
-lg:text-7xl
-font-black
-leading-tight
-">
 
-Fresh food.
+            <h1 className="
+            mt-8
+            text-5xl
+            lg:text-7xl
+            font-black
+            leading-tight
+            ">
 
-<br/>
+              Fresh food.
 
-Healthy life.
+              <br/>
 
-<br/>
+              Healthy life.
 
-<motion.span
+              <br/>
 
-className="text-green-600"
+              <span className="text-green-600">
+                Delivered fast.
+              </span>
 
-animate={{
- color:[
- "#16a34a",
- "#22c55e",
- "#15803d"
- ]
-}}
 
-transition={{
-duration:3,
-repeat:Infinity
-}}
+            </h1>
 
->
 
-Delivered fast.
 
-</motion.span>
+            <p className="
+            mt-6
+            max-w-xl
+            text-lg
+            text-stone-600
+            ">
 
+              Shop fresh fruits, vegetables and daily essentials with trusted doorstep delivery.
 
-</h1>
+            </p>
 
 
 
-<p className="
-mt-6
-text-lg
-text-stone-600
-max-w-xl
-">
+            <div className="
+            mt-8
+            flex
+            gap-4
+            flex-wrap
+            ">
 
-Shop fresh fruits, vegetables and daily essentials with fast doorstep delivery.
 
-</p>
+              <motion.div
 
+                whileHover={{
+                  scale: 1.08
+                }}
 
+                whileTap={{
+                  scale: 0.95
+                }}
 
-<div className="
-mt-8
-flex
-gap-4
-flex-wrap
-">
+              >
 
+                <Link
 
-<motion.div
+                  to="/products"
 
-whileHover={{
-scale:1.08
-}}
+                  className="
+                  btn-primary
+                  flex
+                  items-center
+                  gap-2
+                  "
 
-whileTap={{
-scale:.95
-}}
+                >
 
->
+                  Shop Now
 
+                  <ArrowRight size={18}/>
 
-<Link
+                </Link>
 
-to="/products"
 
-className="
-btn-primary
-flex
-items-center
-gap-2
-"
+              </motion.div>
 
->
 
-Shop Now
 
-<ArrowRight size={18}/>
+              <Link
 
-</Link>
+                to="/products"
 
+                className="btn-secondary"
 
-</motion.div>
+              >
 
+                Explore Products
 
+              </Link>
 
-<Link
 
-to="/products"
+            </div>
 
-className="btn-secondary"
 
->
 
-Explore Products
+            <div className="
+            mt-12
+            grid
+            grid-cols-3
+            gap-6
+            ">
 
-</Link>
 
+              {
+                [
+                  ["30+", "Minute Delivery"],
+                  ["500+", "Products"],
+                  ["4.9", "Rating"]
 
-</div>
+                ].map((item)=>(
 
+                  <motion.div
 
+                    key={item[0]}
 
-<div className="
-mt-12
-grid
-grid-cols-3
-gap-6
-">
+                    whileHover={{
+                      y:-10
+                    }}
 
+                  >
 
-{
-[
-["30+","Minute Delivery"],
-["500+","Products"],
-["4.9","Rating"]
+                    <h3 className="
+                    text-3xl
+                    font-black
+                    ">
 
-].map((item)=>(
+                      {item[0]}
 
-<motion.div
+                    </h3>
 
-whileHover={{
-y:-10
-}}
 
-key={item[0]}
+                    <p className="text-stone-500">
 
->
+                      {item[1]}
 
-<h3 className="
-text-3xl
-font-black
-">
+                    </p>
 
-{item[0]}
 
-</h3>
+                  </motion.div>
 
+                ))
+              }
 
-<p className="text-stone-500">
 
-{item[1]}
+            </div>
 
-</p>
 
+          </motion.div>
 
-</motion.div>
+                    {/* HERO IMAGE */}
 
-))
+          <motion.div
 
-}
+            initial={{
+              opacity:0,
+              scale:0.8
+            }}
 
+            animate={{
+              opacity:1,
+              scale:1
+            }}
 
-</div>
+            transition={{
+              duration:1
+            }}
 
+            className="relative"
 
+          >
 
-</motion.div>
 
+            <motion.div
 
+              animate={{
+                y:[0,-20,0]
+              }}
 
+              transition={{
+                duration:5,
+                repeat:Infinity
+              }}
 
+            >
 
-{/* HERO IMAGE */}
+              <img
 
+                src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1000"
 
-<motion.div
+                alt="Fresh grocery"
 
-initial={{
-opacity:0,
-scale:.8
-}}
+                className="
+                h-[550px]
+                w-full
+                object-cover
+                rounded-[3rem]
+                shadow-2xl
+                "
 
-animate={{
-opacity:1,
-scale:1
-}}
+              />
 
-transition={{
-duration:1
-}}
 
-className="relative"
+            </motion.div>
 
 
->
 
+            <motion.div
 
-<motion.div
+              initial={{
+                opacity:0,
+                y:50
+              }}
 
-animate={{
-y:[0,-20,0]
-}}
+              animate={{
+                opacity:1,
+                y:0
+              }}
 
-transition={{
-duration:5,
-repeat:Infinity
-}}
+              transition={{
+                delay:1
+              }}
 
->
+              className="
+              absolute
+              bottom-8
+              left-8
+              right-8
+              bg-white/90
+              backdrop-blur-xl
+              rounded-3xl
+              p-5
+              shadow-xl
+              "
 
-<img
+            >
 
-src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=900"
 
-className="
-rounded-[3rem]
-shadow-2xl
-h-[550px]
-w-full
-object-cover
-"
+              <div className="flex items-center justify-between">
 
-alt="grocery"
 
-/>
+                <div>
 
-</motion.div>
+                  <p className="
+                  text-xs
+                  font-bold
+                  uppercase
+                  text-green-600
+                  ">
 
+                    Today's Basket
 
+                  </p>
 
-</motion.div>
 
+                  <h3 className="font-black text-lg">
 
+                    Fresh & Healthy Essentials
 
-</div>
+                  </h3>
 
 
-</section>
+                </div>
 
 
 
+                <div className="
+                h-14
+                w-14
+                rounded-2xl
+                bg-green-600
+                text-white
+                grid
+                place-items-center
+                ">
 
+                  <Truck/>
 
-{/* CATEGORY */}
+                </div>
 
-<section className="container-app py-16">
 
+              </div>
 
-<h2 className="text-4xl font-black text-center">
 
-Shop By Category
+            </motion.div>
 
-</h2>
 
 
-<div className="grid md:grid-cols-4 gap-6 mt-10">
+          </motion.div>
 
 
-{
-categories.map((cat)=>(
+        </div>
 
-<div
-key={cat.name}
-className="group overflow-hidden rounded-3xl bg-white shadow hover:-translate-y-2 transition"
->
 
+      </section>
 
-<img
-src={cat.image}
-className="h-48 w-full object-cover group-hover:scale-110 transition"
-/>
 
 
-<h3 className="p-5 text-xl font-black">
 
-{cat.name}
 
-</h3>
+      {/* CATEGORY SECTION */}
 
 
-</div>
+      <section className="container-app py-20">
 
 
-))
-}
+        <motion.div
 
+          variants={fadeUp}
 
-</div>
+          initial="hidden"
 
+          whileInView="visible"
 
-</section>
+          viewport={{
+            once:true
+          }}
 
+          className="text-center"
 
+        >
 
 
+          <p className="
+          uppercase
+          tracking-[.3em]
+          text-green-600
+          font-bold
+          ">
 
-{/* FEATURES */}
+            Categories
 
-<section className="bg-green-50 py-16">
+          </p>
 
 
-<div className="container-app grid md:grid-cols-4 gap-6">
+          <h2 className="
+          mt-3
+          text-4xl
+          lg:text-5xl
+          font-black
+          ">
 
+            Shop by category
 
-{
-[
-[Truck,"Fast Delivery"],
-[ShieldCheck,"Quality Checked"],
-[Leaf,"Fresh Products"],
-[Clock3,"Open Everyday"]
+          </h2>
 
-].map(([Icon,title])=>(
 
+        </motion.div>
 
-<div className="bg-white rounded-3xl p-6 text-center">
 
-<Icon
-className="mx-auto text-green-600"
-size={35}
-/>
 
-<h3 className="mt-4 font-black">
 
-{title}
+        <motion.div
 
-</h3>
+          variants={stagger}
 
-</div>
+          initial="hidden"
 
+          whileInView="visible"
 
-))
-}
+          viewport={{
+            once:true
+          }}
 
+          className="
+          mt-12
+          grid
+          md:grid-cols-4
+          gap-6
+          "
 
-</div>
+        >
 
 
-</section>
+          {
+            categories.map((cat)=>(
 
 
+              <motion.div
 
+                key={cat.name}
 
+                variants={fadeUp}
 
-{/* PRODUCTS */}
+                whileHover={{
+                  y:-12
+                }}
 
+                className="
+                group
+                overflow-hidden
+                rounded-[2rem]
+                bg-white
+                shadow-lg
+                "
 
-<section className="container-app py-16">
+              >
 
 
-<div className="flex justify-between items-center">
+                <img
 
-<h2 className="text-4xl font-black">
+                  src={cat.image}
 
-Today's Fresh Picks
+                  alt={cat.name}
 
-</h2>
+                  className="
+                  h-52
+                  w-full
+                  object-cover
+                  transition
+                  duration-500
+                  group-hover:scale-110
+                  "
 
+                />
 
-<Link
-to="/products"
-className="text-green-700 font-bold"
->
 
-View All →
+                <h3 className="
+                p-5
+                text-xl
+                font-black
+                ">
 
-</Link>
+                  {cat.name}
 
+                </h3>
 
-</div>
 
+              </motion.div>
 
 
-{
-loading ?
+            ))
+          }
 
-<LoadingGrid/>
 
-:
+        </motion.div>
 
-<div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
 
-{
-(products||[])
-.slice(0,8)
-.map((p,i)=>(
+      </section>
 
-<ProductCard
-key={p.id || i}
-product={p}
-index={i}
-/>
 
-))
-}
 
-</div>
 
-}
 
 
-</section>
+      {/* FEATURES SECTION */}
 
 
 
+      <section className="
+      bg-green-50
+      py-20
+      ">
 
 
-{/* REVIEWS */}
+        <div className="
+        container-app
+        grid
+        md:grid-cols-4
+        gap-6
+        ">
 
 
-<section className="bg-stone-100 py-16">
+          {
+            [
+              [Truck,"Fast Delivery"],
+              [ShieldCheck,"Quality Checked"],
+              [Leaf,"Fresh Products"],
+              [Clock3,"Open Everyday"]
 
+            ].map(([Icon,title])=>(
 
-<div className="container-app">
 
+              <motion.div
 
-<h2 className="text-4xl font-black text-center">
+                key={title}
 
-Customer Reviews
+                whileHover={{
+                  y:-10,
+                  scale:1.03
+                }}
 
-</h2>
+                className="
+                bg-white
+                rounded-3xl
+                p-7
+                text-center
+                shadow-sm
+                "
 
+              >
 
 
-<div className="grid md:grid-cols-3 gap-6 mt-10">
+                <div className="
+                mx-auto
+                h-16
+                w-16
+                rounded-2xl
+                bg-green-100
+                text-green-600
+                grid
+                place-items-center
+                ">
 
+                  <Icon size={32}/>
 
-{
-reviews.map((r)=>(
+                </div>
 
 
-<div className="bg-white rounded-3xl p-7">
+                <h3 className="
+                mt-5
+                font-black
+                text-lg
+                ">
 
+                  {title}
 
-<div className="flex text-yellow-500">
+                </h3>
 
-{
-[1,2,3,4,5].map(i=>
-<Star key={i} fill="currentColor" size={18}/>
-)
-}
 
-</div>
+              </motion.div>
 
 
-<p className="mt-5 text-stone-600">
+            ))
+          }
 
-"{r.text}"
 
-</p>
+        </div>
 
 
-<h3 className="mt-5 font-black">
+      </section>
 
-{r.name}
 
-</h3>
 
 
-</div>
 
 
-))
-}
+      {/* PRODUCT SECTION */}
 
 
 
-</div>
+      <section className="container-app py-20">
 
 
-</div>
+        <motion.div
 
+          initial={{
+            opacity:0,
+            y:40
+          }}
 
-</section>
+          whileInView={{
+            opacity:1,
+            y:0
+          }}
 
+          viewport={{
+            once:true
+          }}
 
+          className="
+          flex
+          justify-between
+          items-center
+          "
 
+        >
 
 
-{/* CTA */}
+          <h2 className="
+          text-4xl
+          font-black
+          ">
 
+            Today's Fresh Picks
 
-<section className="container-app py-16">
+          </h2>
 
 
-<div className="rounded-[3rem] bg-green-600 text-white p-10 lg:p-16 text-center">
 
+          <Link
 
-<ShoppingBasket
-className="mx-auto"
-size={45}
-/>
+            to="/products"
 
+            className="
+            font-bold
+            text-green-700
+            "
 
-<h2 className="mt-5 text-4xl font-black">
+          >
 
-Fresh groceries are waiting for you
+            View All →
 
-</h2>
+          </Link>
 
 
-<p className="mt-4 text-green-100">
+        </motion.div>
 
-Order today and enjoy doorstep delivery.
 
-</p>
 
 
-<Link
-to="/products"
-className="inline-block mt-8 bg-white text-green-700 px-8 py-3 rounded-full font-black"
->
+        {
+          loading ?
 
-Start Shopping
+          <LoadingGrid/>
 
-</Link>
+          :
 
+          <motion.div
 
-</div>
+            variants={stagger}
 
+            initial="hidden"
 
-</section>
+            whileInView="visible"
 
+            viewport={{
+              once:true
+            }}
 
+            className="
+            mt-10
+            grid
+            sm:grid-cols-2
+            lg:grid-cols-4
+            gap-6
+            "
 
-</div>
+          >
 
-);
+
+            {
+              (products || [])
+              .slice(0,8)
+              .map((product,index)=>(
+
+
+                <motion.div
+
+                  key={product?.id || index}
+
+                  variants={fadeUp}
+
+                  whileHover={{
+                    y:-10
+                  }}
+
+                >
+
+                  <ProductCard
+
+                    product={product}
+
+                    index={index}
+
+                  />
+
+
+                </motion.div>
+
+
+              ))
+            }
+
+
+          </motion.div>
+
+        }
+
+
+      </section>
+
+            {/* CUSTOMER REVIEWS */}
+
+
+      <section className="
+      bg-stone-100
+      py-20
+      ">
+
+
+        <div className="container-app">
+
+
+          <motion.div
+
+            initial={{
+              opacity:0,
+              y:40
+            }}
+
+            whileInView={{
+              opacity:1,
+              y:0
+            }}
+
+            viewport={{
+              once:true
+            }}
+
+            className="text-center"
+
+          >
+
+
+            <p className="
+            uppercase
+            tracking-[.3em]
+            text-green-600
+            font-bold
+            ">
+
+              Reviews
+
+            </p>
+
+
+            <h2 className="
+            mt-3
+            text-4xl
+            lg:text-5xl
+            font-black
+            ">
+
+              What our customers say
+
+            </h2>
+
+
+          </motion.div>
+
+
+
+
+
+          <motion.div
+
+            variants={stagger}
+
+            initial="hidden"
+
+            whileInView="visible"
+
+            viewport={{
+              once:true
+            }}
+
+            className="
+            mt-12
+            grid
+            md:grid-cols-3
+            gap-6
+            "
+
+          >
+
+
+            {
+              [
+                {
+                  name:"Rahul Sharma",
+                  text:"Fresh products and super fast delivery."
+                },
+
+                {
+                  name:"Priya Das",
+                  text:"Amazing shopping experience with quality groceries."
+                },
+
+                {
+                  name:"Amit Roy",
+                  text:"Best place for daily essentials."
+                }
+
+              ].map((review)=>(
+
+
+                <motion.div
+
+                  key={review.name}
+
+                  variants={fadeUp}
+
+                  whileHover={{
+                    y:-10
+                  }}
+
+                  className="
+                  bg-white
+                  rounded-[2rem]
+                  p-8
+                  shadow-sm
+                  "
+
+                >
+
+
+                  <div className="
+                  flex
+                  text-yellow-500
+                  ">
+
+
+                    {
+                      [1,2,3,4,5].map((star)=>(
+
+                        <Star
+
+                          key={star}
+
+                          size={18}
+
+                          fill="currentColor"
+
+                        />
+
+                      ))
+                    }
+
+
+                  </div>
+
+
+
+                  <p className="
+                  mt-6
+                  text-stone-600
+                  leading-7
+                  ">
+
+                    "{review.text}"
+
+                  </p>
+
+
+
+                  <h3 className="
+                  mt-6
+                  font-black
+                  ">
+
+                    {review.name}
+
+                  </h3>
+
+
+                </motion.div>
+
+
+              ))
+            }
+
+
+          </motion.div>
+
+
+        </div>
+
+
+      </section>
+
+
+
+
+
+
+
+      {/* FINAL CTA */}
+
+
+
+      <section className="
+      container-app
+      py-20
+      ">
+
+
+        <motion.div
+
+          initial={{
+            opacity:0,
+            scale:.9
+          }}
+
+          whileInView={{
+            opacity:1,
+            scale:1
+          }}
+
+          viewport={{
+            once:true
+          }}
+
+          className="
+          relative
+          overflow-hidden
+          rounded-[3rem]
+          bg-green-600
+          p-10
+          lg:p-16
+          text-center
+          text-white
+          "
+
+        >
+
+
+
+          <motion.div
+
+            animate={{
+              rotate:360
+            }}
+
+            transition={{
+              duration:20,
+              repeat:Infinity,
+              ease:"linear"
+            }}
+
+            className="
+            absolute
+            -right-20
+            -top-20
+            h-64
+            w-64
+            rounded-full
+            bg-white/10
+            "
+
+          />
+
+
+
+
+
+          <motion.div
+
+            animate={{
+              y:[0,-10,0]
+            }}
+
+            transition={{
+              duration:3,
+              repeat:Infinity
+            }}
+
+          >
+
+            <ShoppingBasket
+
+              className="mx-auto"
+
+              size={55}
+
+            />
+
+          </motion.div>
+
+
+
+
+          <h2 className="
+          relative
+          mt-6
+          text-4xl
+          lg:text-6xl
+          font-black
+          ">
+
+            Fresh groceries are waiting for you
+
+          </h2>
+
+
+
+          <p className="
+          relative
+          mt-5
+          text-green-100
+          text-lg
+          ">
+
+            Order fresh products today and enjoy doorstep delivery.
+
+          </p>
+
+
+
+
+          <motion.div
+
+            whileHover={{
+              scale:1.08
+            }}
+
+            whileTap={{
+              scale:.95
+            }}
+
+            className="
+            relative
+            mt-8
+            "
+
+          >
+
+
+            <Link
+
+              to="/products"
+
+              className="
+              inline-flex
+              items-center
+              gap-2
+              rounded-full
+              bg-white
+              px-8
+              py-4
+              font-black
+              text-green-700
+              "
+
+            >
+
+              Start Shopping
+
+              <ArrowRight size={18}/>
+
+            </Link>
+
+
+          </motion.div>
+
+
+
+        </motion.div>
+
+
+      </section>
+
+
+
+    </div>
+
+  );
 
 }
